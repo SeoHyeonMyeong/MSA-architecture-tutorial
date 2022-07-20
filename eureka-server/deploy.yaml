@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: eureka-container
-          image: eureka-server:0.1
+          image: shm3215/eureka-server:latest
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka-np
+  name: eureka-lb
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: eureka-server
   ports:

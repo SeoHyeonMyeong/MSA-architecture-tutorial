@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a
+  labels:
+    app: service-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-a
+  template:
+    metadata:
+      labels:
+        app: service-a
+    spec:
+      containers:
+        - name: service-a-container
+          image: shm3215/service-a:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a-cs
+spec:
+  type: ClusterIP
+  selector:
+    app: service-a
+  ports:
+    - port: 9001
+      targetPort: 9001
